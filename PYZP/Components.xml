@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <facilities>
+
+    <!--去掉下面facility定义就可不做AutoLogging-->
+    <facility type="PengeSoft.Logging.AutoLoggingFacility, PengeSoft.Core" />
+    <!-- 去掉下面facility定义就可不做 DynHttpClient -->
+    <facility type="PengeSoft.Client.DynHttpClientFacility, PengeSoft.Core" />
+    <!--去掉下面facility定义就可不做自动缓存-->
+    <facility type="PengeSoft.Cache.AutoCacheFacility, PengeSoft.Core" />
+  </facilities>
+
+  <components>
+   
+    <!--填报信息-->
+    <component id="InfoMgeSvr" type="PYZP.Service.InfoMgeSvr, PYZP.Service" service="PYZP.Service.IInfoMgeSvr, PYZP.Service" lifestyle="Singleton" />
+  </components>
+</configuration>

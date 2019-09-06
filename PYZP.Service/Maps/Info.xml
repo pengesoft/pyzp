@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<sqlMap
+	namespace="PYZP.Service"
+	xmlns="http://ibatis.apache.org/mapping"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <alias>
+    <typeAlias alias="Info" assembly="PYZP.Service.dll" type="PYZP.Service.Info, PYZP.Service" />
+  </alias>
+
+  <resultMaps>
+
+    <resultMap id="InfoResult" class="Info">
+      <result property="Name" column="Name" />
+      <result property="Tel" column="Tel" />
+      <result property="School" column="School" />
+      <result property="Major" column="Major" />
+      <result property="Station" column="Station" />
+      <result property="Time" column="Time" />
+    </resultMap>
+
+  </resultMaps>
+
+  <parameterMaps>
+
+    <parameterMap id="InfoParams" class="Info">
+      <parameter property="Name" column="Name" />
+      <parameter property="Tel" column="Tel" />
+      <parameter property="School" column="School" />
+      <parameter property="Major" column="Major" />
+      <parameter property="Station" column="Station" />
+      <parameter property="Time" column="Time" />
+    </parameterMap>
+
+    <parameterMap id="UpdateInfoParams" extends="InfoParams" class="Info">
+      <parameter property="Tel" column="Tel" />
+    </parameterMap>
+
+  </parameterMaps>
+
+  <statements>
+
+    <select id="GetInfoCount"  resultClass="int">
+      SELECT count(*)
+      FROM [Info];
+    </select>
+
+    <select id="GetInfo"  parameterClass="Info" resultMap="InfoResult">
+      SELECT *
+      FROM [Info]
+      WHERE ([Tel] = #Tel#) ;
+    </select>
+
+    <select id="GetInfoByPara"  parameterClass="Info" resultMap="InfoResult">
+      SELECT *
+      FROM [Info]
+      <dynamic prepend="WHERE" >
+      </dynamic>
+
+    </select>
+
+    <select id="GetInfoList" parameterClass="string" resultMap="InfoResult" listClass="NorDataList">
+      SELECT *
+      FROM [Info]
+      <dynamic prepend="Order By" >
+        <isNotEmpty prepend="Order By" property="_OrderBy">
+          <isEqual compareValue="Time">
+            [Time]
+          </isEqual>
+          <isEqual compareValue="Time_D">
+            [Time] desc
+          </isEqual>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="QueryInfoCount" parameterClass="Hashtable" resultClass="int">
+      SELECT count(*)
+      FROM [Info]
+      <dynamic prepend="WHERE" >
+      </dynamic>
+    </select>
+
+    <select id="QueryInfoList" parameterClass="Hashtable" resultMap="InfoResult" listClass="NorDataList">
+      SELECT *
+      FROM [Info]
+      <dynamic prepend="WHERE" >
+      </dynamic>
+      <dynamic prepend="Order By" >
+        <isNotEmpty prepend="Order By" property="_OrderBy" >
+          <isEqual compareValue="Time" property="_OrderBy">
+            [Time]
+          </isEqual>
+          <isEqual compareValue="Time_D" property="_OrderBy">
+            [Time] desc
+          </isEqual>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <insert id="InsertInfo" parameterMap="InfoParams">
+      <generate table="Info" />
+    </insert>
+
+    <delete id="DeleteInfo" parameterClass="Info">
+      DELETE FROM [Info] WHERE ([Tel] = #Tel#) ;
+    </delete>
+
+    <select id="DeleteInfoByPara" parameterClass="Info">
+      DELETE FROM [Info]
+      <dynamic prepend="WHERE" >
+      </dynamic>
+    </select>
+
+    <update id="UpdateInfo" parameterMap="UpdateInfoParams">
+      UPDATE [Info] SET
+      [Name] = ?,
+      [Tel] = ?,
+      [School] = ?,
+      [Major] = ?,
+      [Station] = ?,
+      [Time] = ?
+      WHERE Tel = ?;
+    </update>
+
+    <select id="UpdateInfoByPara" parameterClass="Info">
+      UPDATE [Info]
+      <dynamic prepend="Set" >
+
+        <isNotEmpty prepend="," property="Name" >
+          [Name] = #Name#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="," property="Tel" >
+          [Tel] = #Tel#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="," property="School" >
+          [School] = #School#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="," property="Major" >
+          [Major] = #Major#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="," property="Station" >
+          [Station] = #Station#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="," property="Time" >
+          [Time] = #Time#
+        </isNotEmpty>
+      </dynamic>
+      <dynamic prepend="Where" >
+
+        <isNotEmpty prepend="AND" property="Name" >
+          [Name] = #Name#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="AND" property="Tel" >
+          [Tel] = #Tel#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="AND" property="School" >
+          [School] = #School#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="AND" property="Major" >
+          [Major] = #Major#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="AND" property="Station" >
+          [Station] = #Station#
+        </isNotEmpty>
+
+        <isNotEmpty prepend="AND" property="Time" >
+          [Time] = #Time#
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+  </statements>
+
+</sqlMap>
