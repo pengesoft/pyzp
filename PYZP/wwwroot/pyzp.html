@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="version" content="1.1.0">
+    <meta name="renderer" content="webkit">
+    <meta name="referrer" content="always">
+    <title>鹏业招聘 - 快到碗里来</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="info-box">
+        <img src="./logo.png" class="logo">
+        <form id="formGroup">
+            <div class="form-input-group">
+                <div class="input-inline">
+                    <input class="input-inline-input js-input empty" id="name" name="Name">
+                    <label for="name" class="input-inline-label">姓名</label>
+                </div>
+            </div>
+            <div class="form-input-group">
+                <div class="input-inline">
+                    <input class="input-inline-input js-input empty" id="school" name="School">
+                    <label for="school" class="input-inline-label">学校</label>
+                </div>
+            </div>
+            <div class="form-input-group">
+                <div class="input-inline">
+                    <input class="input-inline-input js-input empty" id="major" name="Major">
+                    <label for="major" class="input-inline-label">专业</label>
+                </div>
+            </div>
+            <div class="form-input-group">
+                <div class="input-inline">
+                    <input class="input-inline-input js-input empty" id="phone" name="Tel">
+                    <label for="phone" class="input-inline-label">电话</label>
+                </div>
+            </div>
+        </form>
+        <hr data-title="应聘岗位">
+        <div class="form-input-group">
+            <label class="form-checkbox">
+                <input type="checkbox" class="js-station" name="Station" value="java">
+                <span>Java开发</span>
+            </label>
+            <label class="form-checkbox">
+                <input type="checkbox" class="js-station" name="Station" value="c#">
+                <span>C#开发</span>
+            </label>
+            <label class="form-checkbox">
+                <input type="checkbox" class="js-station" name="Station" value="python">
+                <span>Python开发</span>
+            </label>
+            <label class="form-checkbox">
+                <input type="checkbox" class="js-station" name="Station" value="web">
+                <span>Web前端开发</span>
+            </label>
+        </div>
+        <button type="button" class="info-btn" id="submit" disabled>
+            <span id="submit-text">提交</span>
+        </button>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
