@@ -54,8 +54,9 @@ namespace PYZP.Service
         /// <param name="token">token</param>
         /// <param name="info"></param>
         [PublishMethod("info")]
-        public Info AddUpInfo(string token, Info info)
+        public Info AddUpdateInfo(string token, Info info)
         {
+            _logger.Info(info);
             info.Time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             DataPacket data = _Infodao.GetDetail(new Info {
                 Tel = info.Tel

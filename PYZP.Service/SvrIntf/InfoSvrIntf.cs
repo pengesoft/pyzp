@@ -33,7 +33,7 @@ namespace PYZP.Service
         /// <param name="token">token</param>
         /// <param name="info"></param>
         [PublishMethod("info")]
-        Info AddUpInfo(string token, Info info);
+        Info AddUpdateInfo(string token, Info info);
         /// <summary>
         /// 新增        /// </summary>
         /// <param name="token">token</param>
