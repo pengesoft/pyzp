@@ -4,7 +4,7 @@
     const $submitBtn = document.querySelector('#submit');
 
     $inputs.forEach(item => {
-        item.addEventListener('blur', () => {
+        item.addEventListener('input', () => {
             if (item.value === '') {
                 item.classList.add('empty');
                 $submitBtn.setAttribute('disabled', 'disabled');
