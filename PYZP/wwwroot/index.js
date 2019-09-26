@@ -1,7 +1,10 @@
 (function () {
-    const $inputs = document.querySelectorAll('.js-input')
+    const $inputs = document.querySelectorAll('.js-input');
     const $stations = document.querySelectorAll('.js-station');
+    const $otherCheckbox = document.querySelector('#other-checkbox');
+    const $otherInput = document.querySelector('#other-input');
     const $submitBtn = document.querySelector('#submit');
+
 
     $inputs.forEach(item => {
         item.addEventListener('input', () => {
@@ -21,7 +24,20 @@
         });
     });
 
+    $otherCheckbox.addEventListener('click', () => {
+        if ($otherCheckbox.checked) {
+            $otherInput.removeAttribute('disabled');
+            $otherInput.focus();
+        } else {
+            $otherInput.setAttribute('disabled', ' disabled');
+            $otherInput.value = '';
+        }
+    });
 
+    $otherInput.addEventListener('click', (evt) => {
+        evt.stopPropagation();
+        evt.preventDefault();
+    });
 
     $submitBtn.addEventListener('click', () => {
         $submitBtn.setAttribute('disabled', 'disabled');
@@ -30,6 +46,19 @@
         for (const ele of document.querySelector('#formGroup').elements) {
             info[ele.name] = ele.value;
         }
+        const checkboxs = document.querySelectorAll('input[name="Station"]');
+        const stations = [];
+        checkboxs.forEach(item => {
+            if (item.checked) {
+                if (item.value === 'other') {
+                    stations.push($otherInput.value);
+                } else {
+                    stations.push(item.value);
+                }
+            }
+        });
+        info.Station = stations.join(' | ');
+
         const xhr = new XMLHttpRequest();
         xhr.open('post', '/Service/InfoMgeSvr.assx/AddUpdateInfo');
 
@@ -60,6 +89,5 @@
                 $submitBtn.setAttribute('disabled', 'disabled');
             }
         }
-
     }
 }());
